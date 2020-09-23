@@ -4,7 +4,7 @@ import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
-import ChartListItem from './components/ChartListItem';
+import ChartListItem from './components/chatListemItem/ChartListItem';
 
 import './App.css';
 
@@ -46,7 +46,9 @@ export default () => {
           ))}
         </div>
       </div>
-      <div className="contentarea">...</div>
+      <div className="contentarea">
+        
+      </div>
     </div>
   );
 };
