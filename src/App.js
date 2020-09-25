@@ -4,12 +4,23 @@ import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
+
+import avatar from './assets/avatar.png';
+
 import ChartListItem from './components/chatListemItem/ChartListItem';
+import ChatIntro from "./components/chatIntro/ChatIntro";
+import ChatWindow from "./components/chatWindow/ChatWindow";
 
 import './App.css';
 
 export default () => {
-  const [chatlist, setChartList] = useState([{}, {}, {}, {}]);
+  const [chatlist, setChartList] = useState([
+    {chatId: 1, title: "Fulano de Tal", image: avatar},
+    {chatId: 2, title: "Fulano de Tal", image: avatar},
+    {chatId: 3, title: "Fulano de Tal", image: avatar},
+    {chatId: 4, title: "Fulano de Tal", image: avatar}
+  ]);
+  const [activeChat, setActiveChat] = useState({});
 
   return (
     <div className="app-window">
@@ -17,7 +28,7 @@ export default () => {
         <header>
           <img
             className="header--avatar"
-            src="https://lh3.googleusercontent.com/proxy/YMFeBxtDJEnz4Dpk0HBNQRtLMxDJpkXcpi84Q2x0VLqNe6xcfr9mnVxTemcBj-_X7oSElIpwCkHoJKJwpkxBJCXhuUOZ2C4mzFxfnlsvYcRO3Q"
+            src={avatar}
             alt="avatar"
           />
           <div className="header--buttons">
@@ -42,12 +53,17 @@ export default () => {
 
         <div className="chatlist">
           {chatlist.map((item, key) => (
-            <ChartListItem key={key} />
+            <ChartListItem key={key} data={item} active={activeChat.chatId === chatlist[key].chatId} onClick={()=> setActiveChat(chatlist[key])} />
           ))}
         </div>
       </div>
       <div className="contentarea">
-        
+        {activeChat.chatId !== undefined && 
+          <ChatWindow />
+        }
+        {activeChat.chatId === undefined && 
+          <ChatIntro />
+        }
       </div>
     </div>
   );
